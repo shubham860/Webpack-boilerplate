@@ -20,7 +20,7 @@ module.exports = {
                      "sass-loader"],
             },
             {
-                test: /\.js$/,
+                test: /\.jsx?$/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader' // OT automatcially looks for babel config file like .babelrc or babel.config.js
@@ -29,6 +29,9 @@ module.exports = {
         ]
     },
 
+    resolve: {
+        extensions: [".js", ".jsx"]
+    },
 
 
     devtool: 'source-map',
