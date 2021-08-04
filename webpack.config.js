@@ -1,10 +1,12 @@
 const mode = process.env.NODE_ENV === "production" ? "production" : "development";
+const target = process.env.NODE_ENV === "production" ? "browserslist" : "web";
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssnanoPlugin = require('cssnano-webpack-plugin')
 
 
 module.exports = {
     mode: mode,
+    target: target,
 
     plugins: [new MiniCssExtractPlugin(), new CssnanoPlugin({sourceMap: true})],
 
