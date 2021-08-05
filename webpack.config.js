@@ -5,10 +5,13 @@ const CssnanoPlugin = require('cssnano-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const path = require('path');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'); 
 
 module.exports = {
     mode: mode,
     target: target,
+
+    entry: "./src/index.js",
 
     output: {
         path: path.resolve(__dirname, "dist"),
@@ -19,7 +22,8 @@ module.exports = {
                 new CleanWebpackPlugin(),
                 new MiniCssExtractPlugin(),
                 new CssnanoPlugin({sourceMap: true}),
-                new HtmlWebpackPlugin({ template: "./src/index.html"})
+                new HtmlWebpackPlugin({ template: "./src/index.html"}),
+                new ReactRefreshWebpackPlugin()
             ],
 
     module: {
