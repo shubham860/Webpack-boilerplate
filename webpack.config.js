@@ -1,18 +1,26 @@
 const mode = process.env.NODE_ENV === "production" ? "production" : "development";
 const target = process.env.NODE_ENV === "production" ? "browserslist" : "web";
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssnanoPlugin = require('cssnano-webpack-plugin')
-
+const CssnanoPlugin = require('cssnano-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const path = require('path');
 
 module.exports = {
     mode: mode,
     target: target,
 
     output: {
+        path: path.resolve(__dirname, "dist"),
         assetModuleFilename: "images/[hash][ext][query]"
     },
 
-    plugins: [new MiniCssExtractPlugin(), new CssnanoPlugin({sourceMap: true})],
+    plugins: [
+                new CleanWebpackPlugin(),
+                new MiniCssExtractPlugin(),
+                new CssnanoPlugin({sourceMap: true}),
+                new HtmlWebpackPlugin({ template: "./src/index.html"})
+            ],
 
     module: {
         rules: [
